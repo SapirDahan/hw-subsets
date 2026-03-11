@@ -1,2 +1,34 @@
-# hw-template
-Template for homework assignments with automatic grading via pytest
+# Homework assignment: sorted subset sums
+
+כתבו איטרטור או גנרטור (לבחירתכם) בשם sorted_subset_sums. הוא מקבל כקלט סדרה S של מספרים חיוביים שונים, ומייצר סדרה של כל הסכומים של תת-קבוצות של S, מסודרים בסדר עולה.   הפתרון צריך להיות יעיל. בפרט:
+
+* אין לייצר רשימה של כל התת-קבוצות הרלבנטיות ואז להחזיר איטרטור לרשימה, אלא לייצר כל תת-קבוצה כשצריך אותה (כמו שלמדנו בהרצאה).
+
+* אין לייצר רשימה של כל התת-קבוצות הרלבנטיות ואז לסדר אותה לפי סכום, אלא מלכתחילה לייצר תת-קבוצות לפי הסדר
+
+
+דוגמאות:
+
+    >>> from itertools import takewhile, islice
+    >>> for i in sorted_subset_sums([1,2,4]): print(i, end=", ")
+    0, 1, 2, 3, 4, 5, 6, 7,
+
+    >>> list(sorted_subset_sums([1,2,3]))
+    [0, 1, 2, 3, 3, 4, 5, 6]
+
+    >>> list(sorted_subset_sums([2,3,4]))
+    [0, 2, 3, 4, 5, 6, 7, 9]
+
+    >>> list(islice(sorted_subset_sums(range(100)),5))
+    [0, 0, 1, 1, 2]
+
+    >>> list(takewhile(lambda x:x<=6, sorted_subset_sums(range(1,100))))
+    [0, 1, 2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6]
+
+    >>> list(zip(range(5), sorted_subset_sums(range(100))))
+    [(0, 0), (1, 0), (2, 1), (3, 1), (4, 2)]
+
+    >>> len(list(takewhile(lambda x:x<=1000, sorted_subset_sums(list(range(90,100)) + list(range(920,1000))))))
+    1104
+
+יש לבדוק את הפתרון שלכם על דוגמאות נוספות בעזרת דוקטסט - לא להסתפק בכך שהפתרון שלכם עובר את הבדיקות האוטומטיות שלנו. ייתכן שיתווספו בדיקות נוספות בהמשך.

@@ -1,5 +1,4 @@
 import pytest
-import networkx as nx
 from subsets import sorted_subset_sums
 from testcases import parse_testcases
 
